@@ -71,27 +71,40 @@ int& MyDinArr::operator[](int index) {
 	 delete[]data;
 	 size = 0;
  }
- void MyDinArr::swap(MyDinArr& other) {
-	 int tmpsize;
-	 tmpsize = this->size;
-	 this->size = other.size;
-	 other.size = tmpsize;
-	 int* tmpdata =data;
-	 
-
-
-
-
-
-
-
-	 
-
+void MyDinArr::swap(MyDinArr& other,MyDinArr&other2) {
+	 MyDinArr tmp;
+	 tmp = other;
+	 other = other2;
+	 other2 = tmp;
 
  }
- //int* MyDinArr::data()const {
-	// return this->data;
+void MyDinArr::push_back(int value) {
 
- //}
+	int *tmp = new int[size + 1];
+
+	for (int i = 0; i < size; i++) {
+		tmp[i] = this->data[i];
+	}
+	size += 1;
+	for (int i = 0; i < this->size - 1; i++) {
+		this->data[i] = tmp[i];
+	}
+	data[size - 1] = value;
+	delete[]tmp;
+}
+
+
+const int *MyDinArr::Data()const {
+	return data;
+}
+
+
+void MyDinArr::emplace_back(int index) {
+	push_back(data[index]);
+}
+
+ 
+
+
 
 
