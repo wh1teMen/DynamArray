@@ -22,9 +22,13 @@ void swap(MyDinArr &other, MyDinArr &other2);
 const int *Data()const;
 void push_back(int value);
 void emplace_back(int index);
+void reserve(int value);
+void shrink_to_fit();
+void pop_back();
+void insert(int index, int value, int count);
 private:
-	int size{ 0 };
-	int capacity{0};
+	int size{0};
+	int capacity{ 0 };
 	int* data=nullptr;
 };
 

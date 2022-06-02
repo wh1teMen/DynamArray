@@ -1,15 +1,12 @@
 #include<iostream>
 #include"DinArr.h"
-//reserve 
-//shrink_to_fit - size 10 capasity 90 ^ 80 возвращ
 //insert
 //erase
-//emplace_back//
-//pop_back
 //resize - 
 //swaps the contents
 using namespace std;
 int main(){
+	MyDinArr q(4, new int[] {1, 2, 3, 4});
 	MyDinArr a(5, new int[]{1,55,7,9,3});
 	a.PrintArray();
 	MyDinArr b(a);
@@ -34,13 +31,17 @@ int main(){
 	cout << "c = "; c.PrintArray(); cout << endl;
 	cout << "a = "; a.PrintArray(); cout << endl;
 	cout << endl;
-	a.push_back(99);
+	a.push_back(100);
 	cout << "push_back\n";
 	cout << "a = "; a.PrintArray(); cout << endl;
 	cout << endl;
-	cout<<a.Data();
-
-
+	cout<<"data = "<<a.Data();
+	cout << endl;
+	cout << "q = "; q.PrintArray();
+	cout << "\nreserve"; q.reserve(3);
+	cout << "\nq = "; q.PrintArray();
+	cout << "\npop_back = "; q.pop_back(); q.PrintArray();
+	//cout << "\ninsert = "; q.insert(4, 7, 99); q.PrintArray();
 	system("pause>null");
 	return 0;
 }
