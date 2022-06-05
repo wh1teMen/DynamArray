@@ -28,7 +28,7 @@ void MyDinArr::PrintArray()const {
 int& MyDinArr::operator[](int index) {
 	return data[index];
 }
- MyDinArr& MyDinArr::operator= (const MyDinArr& other) {
+MyDinArr& MyDinArr::operator= (const MyDinArr& other) {
 	this->size = other.size;
 	if (this->data != nullptr) {
 		delete[]this->data;
@@ -38,7 +38,7 @@ int& MyDinArr::operator[](int index) {
 		this->data[i] = other.data[i];
 	return *this;
 }
- bool MyDinArr::operator==(const MyDinArr&& other) {
+bool MyDinArr::operator==(const MyDinArr&& other) {
 	 if (this->size != other.size)return false;
 	 if (this->size == other.size) {
 		 for (int i = 0; i < this->size; i++) {
@@ -48,25 +48,25 @@ int& MyDinArr::operator[](int index) {
 		 return true;
 	 }
  }
- int &MyDinArr::at(int index) {
+int &MyDinArr::at(int index) {
 	 return data[index];
 }
- int& MyDinArr::front()const {
+int& MyDinArr::front()const {
 	 return data[0];
  }
- int& MyDinArr::back()const {
+int& MyDinArr::back()const {
 	 return data[size - 1];
  }
- int MyDinArr::Capacity()const {
+int MyDinArr::Capacity()const {
 	 return capacity;
  }
- bool MyDinArr::empty() {
+bool MyDinArr::empty() {
 	 if(capacity > 0) return false;  return true;
  }
- int  MyDinArr::Size() const{
+int  MyDinArr::Size() const{
 	 return this->size;
  }
- void MyDinArr::clear() {
+void MyDinArr::clear() {
 	 delete[]data;
 	 size = 0;
  }
@@ -150,29 +150,71 @@ void MyDinArr::pop_back() {
 	}
 	delete[]tmp;
 }
-//void MyDinArr::insert(int index, int value, int count) {
-//	if (capacity < size + count)
-//		this->reserve(count);
-//	this->size += count;
-//	int* tmp = new int[size];
-//	for (int i = 0; i < index; i++) {
-//		tmp[i] = data[i];
-//	}
-//	for (int i = index; i < index + count; i++) {
-//		tmp[i] = value;
-//	}
-//	for (int i = index + count; i < size; i++) {
-//		tmp[i]=data[i - count];
-//	}
-//	delete[]data;
-//	data = new int[capacity];
-//	for (int i = 0; i < size; i++) {
-//		data[i]=tmp[i];
-//	}
-//	delete[]tmp;
-//
-//}
- 
+void MyDinArr::insert(int index,int value,int count) {
+		if (capacity < size + count)
+			this->reserve(count);
+		size += count;
+		int* tmp = new int[size];
+		for (int i = 0; i < index; i++){
+			tmp[i] = data[i];
+		}
+		for (int i = index; i < index + count; i++){
+			tmp[i] = value;
+		}
+		for (int i = index + count; i < size; i++){
+			tmp[i] = data[i - count];
+		}
+		delete[]data;
+		data = new int[capacity];
+		for (int i = 0; i < size; i++){
+			data[i] = tmp[i];
+		}
+		delete[]tmp;
+	
+	
+}
+void MyDinArr::resize(int newsize) {
+	if (newsize > capacity)
+		this->reserve(newsize - capacity);
+	else
+	{
+		int* tmp = new int[size];
+		for (int i = 0; i < size; i++)
+		{
+			tmp[i] = data[i];
+		}
+		delete[]data;
+		capacity = newsize;
+		data = new int[capacity];
+		if (size > capacity)
+			size = capacity;
+		for (int i = 0; i < size; i++)
+		{
+			data[i] = tmp[i];
+		}
+	}
+		
+}
+void MyDinArr::erase(int begin, int end) {
+	int count = 0;
+	int* tmp = new int[size];
+	for (int i = 0; i < size; i++){
+		tmp[i] = data[i];
+	}
+	delete[]data;
+	data = new int[size - (end - begin)];
+	for (int i = 0; i < size; i++)
+	{
+		if (i >= begin && i <= end)
+		{
+			count++;
+			continue;
+		}
+		data[i - count] = tmp[i];
+	}
+	size-= (end - begin + 1);
+
+}
 
 
 

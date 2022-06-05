@@ -1,9 +1,5 @@
 #include<iostream>
 #include"DinArr.h"
-//insert
-//erase
-//resize - 
-//swaps the contents
 using namespace std;
 int main(){
 	MyDinArr q(4, new int[] {1, 2, 3, 4});
@@ -41,7 +37,10 @@ int main(){
 	cout << "\nreserve"; q.reserve(3);
 	cout << "\nq = "; q.PrintArray();
 	cout << "\npop_back = "; q.pop_back(); q.PrintArray();
-	//cout << "\ninsert = "; q.insert(4, 7, 99); q.PrintArray();
+	cout << "\nq = "; q.PrintArray();
+	cout << "\nresize\n"; q.resize(15); q.PrintArray();
+	cout << "\nerase\n"; q.erase(6,15); q.PrintArray();
+	//cout << "\ninsert = "; q.insert(4, 7, 2); q.PrintArray();
 	system("pause>null");
 	return 0;
 }
